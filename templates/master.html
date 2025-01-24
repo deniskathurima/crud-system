@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+    <script src="{% static 'bootstrap/js/jquery-3.4.0.js' %}"></script>
+    <script src="{% static 'bootstrap/js/popper.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.js' %}"></script>
+
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'bootstrap/css/styles.css' %}">
+</head>
+<body>
+<nav class="navbar navbar-expand-sm">
+
+    <!-- Links -->
+    <ul style="font-family: Georgia,serif; font-size:large"  class="navbar-nav mx-auto">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'home-url' %}">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'register_members-url' %}">Register Members</a>
+        </li>
+        
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'all_members-url' %}">All Members</a>
+        </li>
+    </ul>
+</nav>
+{% block content %}
+{% endblock %}
+
+</body>
+</html>

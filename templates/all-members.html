@@ -1,0 +1,43 @@
+{% extends 'master.html' %}
+{% block content %}
+    {% load static %}
+    <style>
+        table{
+            width: 80%;
+            margin-left: 10%;
+            margin-right: 10%;
+        }
+        table, td, th{
+            border: 2px solid #988fd7;
+            border-collapse: collapse;
+        }
+    </style>
+    <div class="container">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Second Name</th>
+                <th>ID NO</th>
+                <th>Mobile No</th>
+                <th>Date of Birth</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+            {% for member in members %}
+                <tr>
+                    <td>{{ member.id }}</td>
+                    <td>{{ member.first_name }}</td>
+                    <td>{{ member.second_name }}</td>
+                    <td>{{ member.id_no }}</td>
+                    <td>{{ member.mobile_no }}</td>
+                    <td>{{ member.date_of_birth }}</td>
+                    <td><a href="/delete/{{ member.id }}">Delete</a></td>
+                    <td><a href="">Update</a></td>
+                </tr>
+            {% endfor %}
+
+        </table>
+
+    </div>
+{% endblock %}
