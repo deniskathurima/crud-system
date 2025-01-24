@@ -14,11 +14,15 @@ def register_members(request):
         member_mobileno = request.POST['m-mobileno']
         member_dateofbirth = request.POST['m-dateofbirth']
 
-        data = Member(first_name=member_firstname, second_name=member_secondname, id_no=member_idno,
+        # Check if a member with the same id_no already exists
+        if Member.objects.filter(id_no=member_idno).exists():
+            messages.error(request, 'Member with this ID number already exists')
+        else:
+            data = Member(first_name=member_firstname, second_name=member_secondname, id_no=member_idno,
                       mobile_no=member_mobileno, date_of_birth=member_dateofbirth)
-        data.save()
-        messages.success(request, 'Member added successfully')
-        return redirect('register_members-url')
+            data.save()
+            messages.success(request, 'Member added successfully')
+            return redirect('register_members-url')
     return render(request, 'register-members.html')
 
 def all_members(request):
@@ -30,4 +34,4 @@ def delete_member(request,id):
     member = Member.objects.get(id=id)
     member.delete()
     messages.success(request, 'Member deleted successfully')
-    return redirect('all_members')
+    return redirect('all_members-url')
